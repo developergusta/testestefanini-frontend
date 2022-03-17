@@ -1,0 +1,66 @@
+<div class="container">
+    <h1>Edição de pessoa</h1>
+    <form [formGroup]="pessoaForm">
+        <div class="form-group">
+            <div class=" input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control form-control-alternative"
+                    [ngClass]="{'is-invalid': pessoaForm.get('nome')?.errors && pessoaForm.get('nome')?.touched}"
+                    placeholder="Nome" type="text"
+                    formControlName="nome">
+                <div *ngIf="pessoaForm.get('nome')?.hasError('required') && pessoaForm.get('nome')?.touched"
+                    class="invalid-feedback">Campo obrigatório</div>
+                <div *ngIf="pessoaForm.get('nome')?.hasError('minlength') && pessoaForm.get('nome')?.touched"
+                    class="invalid-feedback">Mínimo 2 caracteres</div>
+                <div *ngIf="pessoaForm.get('nome')?.hasError('maxlength') && pessoaForm.get('nome')?.touched"
+                    class="invalid-feedback">Máximo 255 caracteres</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class=" input-group input-group-alternative mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" mask="000.000.000.00"
+              [ngClass]="{'is-invalid': pessoaForm.get('cpf')?.errors && pessoaForm.get('cpf')?.touched}">
+            <div *ngIf="pessoaForm.get('cpf')?.hasError('required') && pessoaForm.get('cpf')?.touched"
+              class="invalid-feedback">
+              CPF é obrigatório.
+            </div>
+            <div *ngIf="pessoaForm.get('cpf')?.hasError('maxlength') && pessoaForm.get('cpf')?.touched"
+              class="invalid-feedback">
+              CPF deve ter no máximo 14 caracters.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <div class=" input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control form-control-alternative"
+                    [ngClass]="{'is-invalid': pessoaForm.get('idade')?.errors && pessoaForm.get('idade')?.touched}"
+                    placeholder="idade" type="text"
+                    formControlName="idade">
+                <div *ngIf="pessoaForm.get('idade')?.hasError('required') && pessoaForm.get('idade')?.touched"
+                    class="invalid-feedback">Campo obrigatório</div>
+                <div *ngIf="pessoaForm.get('idade')?.hasError('max') && pessoaForm.get('idade')?.touched"
+                    class="invalid-feedback">Idade máxima: 120 anos</div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Cidade</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" formControlName="idCidade">
+              <option selected>Escolha...</option>
+              <option *ngFor="let item of cidades" [ngValue]="item.id">{{item.nome}}</option>
+            </select>
+          </div>
+        <div class="text-center">
+            <button (click)="editarPessoa()" type="button" class="btn btn-primary mt-4">Editar pessoa</button>
+        </div>
+    </form>
+</div>

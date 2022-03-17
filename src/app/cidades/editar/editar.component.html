@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Edição de cidade</h1>
+    <form [formGroup]="cidadeForm">
+        <div class="form-group">
+            <div class=" input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control form-control-alternative"
+                    [ngClass]="{'is-invalid': cidadeForm.get('nome')?.errors && cidadeForm.get('nome')?.touched}"
+                    placeholder="Nome" type="text" [(ngModel)]="cidade.nome" 
+                    formControlName="nome">
+                <div *ngIf="cidadeForm.get('nome')?.hasError('required') && cidadeForm.get('nome')?.touched"
+                    class="invalid-feedback">Campo obrigatório</div>
+                <div *ngIf="cidadeForm.get('nome')?.hasError('minlength') && cidadeForm.get('nome')?.touched"
+                    class="invalid-feedback">Mínimo 2 caracteres</div>
+                <div *ngIf="cidadeForm.get('nome')?.hasError('maxlength') && cidadeForm.get('nome')?.touched"
+                    class="invalid-feedback">Máximo 255 caracteres</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class=" input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control form-control-alternative" [(ngModel)]="cidade.uf" 
+                    [ngClass]="{'is-invalid': cidadeForm.get('uf')?.errors && cidadeForm.get('uf')?.touched}"
+                    placeholder="UF" type="text"
+                    formControlName="uf">
+                <div *ngIf="cidadeForm.get('uf')?.hasError('required') && cidadeForm.get('uf')?.touched"
+                    class="invalid-feedback">Campo obrigatório</div>
+                <div *ngIf="cidadeForm.get('uf')?.hasError('minlength') && cidadeForm.get('uf')?.touched"
+                    class="invalid-feedback">Mínimo 2 caracteres</div>
+                <div *ngIf="cidadeForm.get('uf')?.hasError('maxlength') && cidadeForm.get('uf')?.touched"
+                    class="invalid-feedback">Máximo 255 caracteres</div>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <button (click)="editarCidade()" type="button" class="btn btn-primary mt-4">Editar Cidade</button>
+        </div>
+    </form>
+</div>

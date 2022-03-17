@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="d-flex">
+        <h1>Lista de cidades</h1>
+        <button class="btn btn-success m-auto" routerLink="criar">Criar Pessoa</button>
+    </div>
+    
+    <table class="table table-striped table-dark" *ngIf="pessoas">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cpf</th>
+                <th scope="col">Idade</th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of pessoas">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.nome}}</td>
+                <td>{{item.cpf}}</td>
+                <td>{{item.idade }}</td>
+                <td>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#ModalEditarCidade" routerLink="cidades/editar/1">Editar</button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#ModalExcluirPessoa" (click)="excluirPessoa(item.id)">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h1 *ngIf="!pessoas.length">
+        Nenhuma pessoa foi cadastrada
+    </h1>
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="ModalExcluirPessoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deseja confirmar a exclusão desta cidade?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar   </button>
+                    <button type="button" class="btn btn-primary" (click)="confirmaExcluirPessoa()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
