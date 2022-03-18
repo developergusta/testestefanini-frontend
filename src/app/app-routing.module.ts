@@ -5,6 +5,7 @@ import { CriarComponent as CriarCidadeComponent } from './cidades/criar/criar.co
 import { EditarComponent } from './cidades/editar/editar.component';
 import { HomeComponent } from './home/home.component';
 import { CriarPessoaComponent } from './pessoas/criar-pessoa/criar-pessoa.component';
+import { EditarPessoaComponent } from './pessoas/editar-pessoa/editar-pessoa.component';
 import { PessoasComponent } from './pessoas/pessoas.component';
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
     children: [
       { path: '', component: PessoasComponent },
       { path: 'criar', component: CriarPessoaComponent },
-      { path: 'editar/:id', component: EditarComponent },
+      { path: 'editar/:id', component: EditarPessoaComponent },
     ]
   },
 ];

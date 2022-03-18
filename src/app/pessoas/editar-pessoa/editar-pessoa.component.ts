@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cidade } from 'src/app/Model/Cidade';
 import { Pessoa } from 'src/app/Model/Pessoa';
 import { CidadeServiceService } from 'src/app/_services/cidade-service.service';
@@ -16,11 +16,30 @@ export class EditarPessoaComponent implements OnInit {
   pessoa: Pessoa = new Pessoa()
   cidades: Cidade[] = []
   pessoaForm!: FormGroup
+  idPessoa!: number;
+
   
-  constructor(private fb: FormBuilder,private cidadeService: CidadeServiceService, private pessoaService: PessoaServiceService, public router: Router) { }
+  constructor(private fb: FormBuilder,private cidadeService: CidadeServiceService,private activatedRouter: ActivatedRoute,  private pessoaService: PessoaServiceService, public router: Router) { }
 
   async ngOnInit() {
     this.validation()
+    this.carregarPessoa();
+    await this.carregarCidades();
+  }
+
+  carregarPessoa() {
+    this.idPessoa = this.activatedRouter.snapshot.params['id'];
+    this.pessoaService.getPessoaById(this.idPessoa)
+      .then(
+        (pessoa: Pessoa) => {
+          console.log(pessoa)
+          this.pessoa = pessoa;
+        }
+      );
+  }
+
+  async carregarCidades(){
+    this.cidades = await this.cidadeService.getCidadeList()
   }
 
   public validation(): any {
@@ -40,6 +59,7 @@ export class EditarPessoaComponent implements OnInit {
   async editarPessoa(): Promise<any>{
     if (this.pessoaForm.valid){
       this.pessoa = Object.assign({}, this.pessoaForm.value);
+      this.pessoa.id = this.idPessoa
       this.pessoaService.alterarPessoa(this.pessoa).then(
         () => {
           this.router.navigate(['/pessoas']);

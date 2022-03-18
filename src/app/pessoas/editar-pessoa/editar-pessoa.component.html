@@ -8,7 +8,7 @@
                 </div>
                 <input class="form-control form-control-alternative"
                     [ngClass]="{'is-invalid': pessoaForm.get('nome')?.errors && pessoaForm.get('nome')?.touched}"
-                    placeholder="Nome" type="text"
+                    placeholder="Nome" type="text" [(ngModel)]="pessoa.nome"
                     formControlName="nome">
                 <div *ngIf="pessoaForm.get('nome')?.hasError('required') && pessoaForm.get('nome')?.touched"
                     class="invalid-feedback">Campo obrigatório</div>
@@ -24,7 +24,7 @@
                 <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
             </div>
             <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" mask="000.000.000.00"
-              [ngClass]="{'is-invalid': pessoaForm.get('cpf')?.errors && pessoaForm.get('cpf')?.touched}">
+              [ngClass]="{'is-invalid': pessoaForm.get('cpf')?.errors && pessoaForm.get('cpf')?.touched}" [(ngModel)]="pessoa.cpf">
             <div *ngIf="pessoaForm.get('cpf')?.hasError('required') && pessoaForm.get('cpf')?.touched"
               class="invalid-feedback">
               CPF é obrigatório.
@@ -42,7 +42,7 @@
                 </div>
                 <input class="form-control form-control-alternative"
                     [ngClass]="{'is-invalid': pessoaForm.get('idade')?.errors && pessoaForm.get('idade')?.touched}"
-                    placeholder="idade" type="text"
+                    placeholder="idade" type="text" [(ngModel)]="pessoa.idade"
                     formControlName="idade">
                 <div *ngIf="pessoaForm.get('idade')?.hasError('required') && pessoaForm.get('idade')?.touched"
                     class="invalid-feedback">Campo obrigatório</div>
@@ -54,7 +54,7 @@
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">Cidade</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01" formControlName="idCidade">
+            <select class="custom-select" id="inputGroupSelect01" formControlName="idCidade" [(ngModel)]="pessoa.cidade">
               <option selected>Escolha...</option>
               <option *ngFor="let item of cidades" [ngValue]="item.id">{{item.nome}}</option>
             </select>

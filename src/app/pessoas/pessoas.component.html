@@ -20,8 +20,8 @@
                 <td>{{item.nome}}</td>
                 <td>{{item.cpf}}</td>
                 <td>{{item.idade }}</td>
-                <td>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#ModalEditarCidade" routerLink="cidades/editar/1">Editar</button>
+                <td> 
+                    <button class="btn btn-primary" routerLink="editar/{{item.id}}">Editar</button>
                     <button class="btn btn-danger" data-toggle="modal" data-target="#ModalExcluirPessoa" (click)="excluirPessoa(item.id)">Excluir</button>
                 </td>
             </tr>
@@ -54,5 +54,4 @@
             </div>
         </div>
     </div>
-
 </div>

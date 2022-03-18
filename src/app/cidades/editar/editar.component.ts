@@ -20,10 +20,10 @@ export class EditarComponent implements OnInit {
 
   async ngOnInit() {
     this.validation();
-    this.carregarUsuario();
+    this.carregarCidade();
   }
 
-  carregarUsuario() {
+  carregarCidade() {
     this.idCidade = this.activatedRouter.snapshot.params['id'];
     this.cidadeService.getCidadeById(this.idCidade)
       .then(
